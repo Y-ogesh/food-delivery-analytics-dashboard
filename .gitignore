@@ -1,0 +1,19 @@
+# JetBrains
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+.venv/
+
+# VS Code (optional)
+.vscode/
