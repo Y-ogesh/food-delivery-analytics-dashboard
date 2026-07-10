@@ -1,7 +1,21 @@
+-- ==================================================
+-- 01 Database Setup
+-- ==================================================
+-- Project: Food Delivery Analytics Project
+--
+-- Purpose:
+-- Create the PostgreSQL database and raw import table for the food
+-- delivery order history dataset.
+--
+-- Geography:
+-- The source data represents Delhi NCR food delivery activity. Do not
+-- modify city, subzone, restaurant, or location values to represent
+-- another geography.
+
 -- Create database
 CREATE DATABASE food_delivery_analytics;
 
--- Create staging table
+-- Create raw import table
 CREATE TABLE raw_order_history (
                                    restaurant_id BIGINT,
                                    restaurant_name TEXT,

@@ -1,0 +1,11 @@
+-- ==================================================
+-- 05 Advanced SQL
+-- ==================================================
+-- Project: Food Delivery Analytics Project
+--
+-- Purpose:
+-- Add advanced analytical SQL patterns such as window functions,
+-- cohort-style metrics, ranking, and dashboard-ready analytical views.
+--
+-- Geography:
+-- The source data represents Delhi NCR food delivery activity.

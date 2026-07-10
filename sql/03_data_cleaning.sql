@@ -1,0 +1,12 @@
+-- ==================================================
+-- 03 Data Cleaning
+-- ==================================================
+-- Project: Food Delivery Analytics Project
+--
+-- Purpose:
+-- Build the cleaned staging layer that converts raw imported fields
+-- into analysis-ready columns for the Food Delivery Analytics Dashboard.
+--
+-- Geography:
+-- The source data represents Delhi NCR food delivery activity. Preserve
+-- raw restaurant, city, subzone, and location values during cleaning.

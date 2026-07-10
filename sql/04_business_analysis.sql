@@ -1,0 +1,11 @@
+-- ==================================================
+-- 04 Business Analysis
+-- ==================================================
+-- Project: Food Delivery Analytics Project
+--
+-- Purpose:
+-- Develop SQL analyses for restaurant performance, order outcomes,
+-- revenue, customer behavior, and delivery operations.
+--
+-- Geography:
+-- The source data represents Delhi NCR food delivery activity.
