@@ -2,102 +2,222 @@
 
 ## Project Overview
 
-The **Food Delivery Analytics Project** is a production-style analytics portfolio project focused on understanding restaurant performance, order outcomes, customer behavior, delivery operations, and revenue patterns from food delivery order history data.
+The **Food Delivery Analytics Dashboard** is an end-to-end analytics portfolio project that transforms raw food delivery operational data into an analytics-ready data model using PostgreSQL and SQL before producing business insights and interactive Power BI dashboards.
 
-The goal of this repository is to demonstrate professional data analyst and analytics engineering skills using SQL, PostgreSQL, documentation, and eventually Power BI dashboarding.
+This project demonstrates a professional analytics workflow including data ingestion, profiling, cleaning, business analysis, documentation, version control, and dashboard development.
 
-## Dataset Source and Geography
+---
 
-**Dataset:** Food Delivery Order History Dataset  
-**Source:** Kaggle  
-**Current Raw Table:** `raw_order_history`  
+# Dataset Source and Geography
+
+**Dataset:** Food Delivery Order History Dataset
+
+**Source:** Kaggle
+
+**Raw Table:** `raw_order_history`
+
+**Clean Table:** `clean_orders`
+
 **Geography Represented:** Delhi NCR
 
-The dataset contains food delivery activity from `Delhi NCR`. The source data should remain truthful to its actual geography. Restaurant names, city values, subzones, and other location-related fields are preserved as provided in the raw dataset.
+The dataset represents food delivery activity from **Delhi NCR**. All restaurant names, locations, and geographical information are preserved exactly as provided by the source dataset. No geographical information has been modified.
 
-The local repository folder name has not been changed yet, but the project documentation is now framed consistently as a general food delivery analytics project.
+---
 
-## Business Objectives
+# Business Objectives
 
 This project is designed to answer practical business questions such as:
 
-- How many orders were placed, delivered, rejected, returned, or otherwise not completed?
-- Which restaurant locations and brands generate the most order volume and revenue?
-- What are the main drivers of operational performance, such as kitchen preparation time and rider wait time?
-- How complete and reliable are customer feedback fields such as ratings, reviews, and complaints?
-- How do discounts, packaging charges, and order totals support financial analysis?
-- What cleaned and documented data model should feed a future dashboard?
+- What is the overall delivery success rate?
+- Which restaurant locations and brands generate the highest order volume?
+- Which restaurant locations generate the highest delivered order value?
+- What are the peak ordering hours and busiest days?
+- Which operational metrics influence delivery performance?
+- How complete and reliable is customer feedback?
+- How do discounts, packaging charges, and final order totals affect financial analysis?
+- How can raw operational data be transformed into an analytics-ready data model?
 
-## Tech Stack
+---
+
+# Tech Stack
 
 - PostgreSQL
 - SQL
 - DataGrip
 - VS Code
-- Git and GitHub
-- Power BI, planned
-- Python, optional later if needed
+- Git & GitHub
+- Power BI (Dashboard Development)
+- Python (Future Analytics Extensions)
 
-## Repository Structure
+---
+
+# Repository Structure
 
 ```text
 docs/
-  data_dictionary.md
-  data_profiling_report.md
+│── data_dictionary.md
+│── data_profiling_report.md
+│── data_cleaning_report.md
 
 sql/
-  01_database_setup.sql
-  02_data_profiling.sql
-  03_data_cleaning.sql
-  04_business_analysis.sql
-  05_advanced_sql.sql
-
-data/
-  order_history_kaggle_data.csv
+│── 01_database_setup.sql
+│── 02_data_profiling.sql
+│── 03_data_cleaning.sql
+│── 04_business_analysis.sql
+│── 05_advanced_sql.sql
 
 dashboard/
+
 images/
+
 notebooks/
+
+data/
+│── order_history_kaggle_data.csv
+
 README.md
 ```
 
-## Current Progress
+---
 
-- PostgreSQL database created
-- Raw table created
-- CSV imported into `raw_order_history`
-- Data profiling SQL completed
-- Profiling report reconciled with live database results
-- Data dictionary drafted for the raw dataset
-- Data cleaning, business analysis, advanced SQL, and dashboarding are planned next
+# Project Workflow
 
-## Key Profiling Findings
+```text
+Kaggle Dataset
+        │
+        ▼
+raw_order_history
+        │
+        ▼
+Data Profiling
+        │
+        ▼
+clean_orders
+        │
+        ▼
+Business Analysis
+        │
+        ▼
+Power BI Dashboard
+```
 
-- Total orders: 21,321
-- Total columns: 29
-- Restaurant locations: 21
-- Restaurant brands: 6
-- Unique customers: 11,607
-- Cities represented: 1, `Delhi NCR`
-- Subzones represented: 8
-- Rating completion rate: 11.68%
-- Duplicate order IDs found: 0
-- Parsed order date range: 2024-09-01 00:13 to 2025-01-31 23:59
-- Delivered orders represent 99.11% of all records
+---
 
-## Data Quality Notes
+# Skills Demonstrated
 
-- `order_placed_at` is stored as text in the raw table and must be converted to a timestamp for time-based analysis.
-- `distance` is stored as text and must be converted before distance-based analysis.
-- Ratings, reviews, complaints, and cancellation/rejection reasons are sparsely populated.
-- `restaurant_id` should be used as the restaurant location key because multiple locations can share the same restaurant name.
-- The dataset represents Delhi NCR food delivery activity and should not be described as location-specific to any other city.
+This project demonstrates practical experience in:
 
-## Planned Next Steps
+- PostgreSQL Database Design
+- SQL Data Cleaning
+- Data Profiling
+- Exploratory Data Analysis (EDA)
+- Data Quality Assessment
+- Analytics Engineering
+- Business Metrics Development
+- Git & GitHub
+- Technical Documentation
+- Power BI Dashboard Development (Upcoming)
 
-1. Build a cleaned staging layer in `sql/03_data_cleaning.sql`.
-2. Convert text fields such as order timestamp and distance into analysis-ready data types.
-3. Add data quality validation queries for cleaned fields.
-4. Define business metrics for orders, revenue, delivery performance, and customer feedback.
-5. Create analytical SQL views for dashboard consumption.
-6. Build a Power BI dashboard using the cleaned analytical layer.
+---
+
+# Current Progress
+
+Completed:
+
+- ✅ PostgreSQL database setup
+- ✅ Raw data ingestion
+- ✅ Data profiling
+- ✅ Data quality assessment
+- ✅ Data cleaning
+- ✅ Analytics-ready staging layer (`clean_orders`)
+
+Upcoming:
+
+- Business Analysis
+- Advanced SQL
+- Power BI Dashboard
+- Final Documentation
+
+---
+
+# Key Profiling Findings
+
+| Metric | Value |
+|---------|-------:|
+| Total Orders | 21,321 |
+| Restaurant Locations | 21 |
+| Restaurant Brands | 6 |
+| Unique Customers | 11,607 |
+| Cities | 1 (Delhi NCR) |
+| Subzones | 8 |
+| Rating Completion | 11.68% |
+| Duplicate Order IDs | 0 |
+| Date Range | 2024-09-01 → 2025-01-31 |
+| Delivered Orders | 99.11% |
+
+---
+
+# Data Quality Notes
+
+The project follows a layered architecture.
+
+### Raw Layer (`raw_order_history`)
+
+The raw ingestion table preserves the original dataset exactly as received from Kaggle.
+
+Examples include:
+
+- Text-formatted timestamps
+- Text-formatted distance values
+- Original restaurant information
+- Original customer information
+
+No transformations are applied to the raw table.
+
+---
+
+### Clean Layer (`clean_orders`)
+
+The cleaned staging layer prepares the dataset for analysis by:
+
+- Converting timestamps into PostgreSQL `TIMESTAMP`
+- Converting distance into numeric kilometers
+- Trimming whitespace
+- Standardizing missing values
+- Preserving the original raw data
+- Creating an analytics-ready staging table
+
+---
+
+# Roadmap
+
+- [x] Environment Setup
+- [x] Data Profiling
+- [x] Data Cleaning
+- [ ] Business Analysis
+- [ ] Advanced SQL
+- [ ] Power BI Dashboard
+- [ ] Final Documentation
+
+---
+
+# Future Improvements
+
+Future versions of this project will include:
+
+- Advanced SQL using CTEs and Window Functions
+- Interactive Power BI Dashboard
+- Python-based customer segmentation
+- Time-series forecasting
+- Customer review sentiment analysis
+- Automated ETL pipeline
+
+---
+
+# Author
+
+**Yogesh Periyasamy**
+
+Master of Computer Science
+
+Building an end-to-end portfolio focused on Data Analytics, Business Intelligence, and Analytics Engineering.
