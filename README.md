@@ -47,7 +47,7 @@ This project is designed to answer practical business questions such as:
 - VS Code
 - Git & GitHub
 - Power BI (Dashboard Development)
-- Python (Future Analytics Extensions)
+- Python (Predictive Analytics & Machine Learning – Planned)
 
 ---
 
@@ -59,6 +59,7 @@ docs/
 │── data_profiling_report.md
 │── data_cleaning_report.md
 │── business_analysis_report.md
+│── advanced_sql_report.md
 
 sql/
 │── 01_database_setup.sql
@@ -101,11 +102,39 @@ clean_orders
 Business Analysis
         │
         ▼
-Advanced SQL & Analytics Views
+Advanced SQL
+        │
+        ▼
+Analytics Views
+(`vw_executive_kpis`, `vw_monthly_performance`,
+ `vw_restaurant_performance`, `vw_customer_segments`,
+ `vw_operational_performance`)
         │
         ▼
 Power BI Dashboard
 ```
+
+---
+# Project Architecture
+
+Raw Layer
+    raw_order_history
+
+↓
+
+Staging Layer
+    clean_orders
+
+↓
+
+Analytics Layer
+    Business SQL
+    Analytics Views
+
+↓
+
+Visualization Layer
+    Power BI
 
 ---
 
@@ -122,7 +151,12 @@ This project demonstrates practical experience in:
 - Business Metrics Development
 - Git & GitHub
 - Technical Documentation
-- Power BI Dashboard Development (Upcoming)
+- Common Table Expressions (CTEs)
+- Window Functions
+- Customer Segmentation
+- Time-Series Analysis
+- Analytics View Development
+- Reusable Data Modeling for Power BI
 
 ---
 
@@ -138,10 +172,12 @@ Completed:
 - ✅ Analytics-ready staging layer (`clean_orders`)
 - ✅ Business analysis
 - ✅ Business analysis report
+- ✅ Advanced SQL
+- ✅ Analytics views
+- ✅ Advanced SQL report
 
 Upcoming:
 
-- Advanced SQL
 - Power BI Dashboard
 - Final Documentation
 
@@ -202,7 +238,7 @@ The cleaned staging layer prepares the dataset for analysis by:
 - [x] Data Profiling
 - [x] Data Cleaning
 - [x] Business Analysis
-- [ ] Advanced SQL
+- [x] Advanced SQL
 - [ ] Power BI Dashboard
 - [ ] Final Documentation
 
@@ -212,7 +248,7 @@ The cleaned staging layer prepares the dataset for analysis by:
 
 Future versions of this project will include:
 
-- Advanced SQL using CTEs and Window Functions
+- Query performance tuning and analytics-view indexing strategy
 - Interactive Power BI Dashboard
 - Python-based customer segmentation
 - Time-series forecasting
