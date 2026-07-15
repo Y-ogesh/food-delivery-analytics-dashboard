@@ -58,6 +58,7 @@ docs/
 │── data_dictionary.md
 │── data_profiling_report.md
 │── data_cleaning_report.md
+│── business_analysis_report.md
 
 sql/
 │── 01_database_setup.sql
@@ -78,6 +79,8 @@ data/
 README.md
 ```
 
+> The raw dataset is not committed to this repository. Download it from Kaggle and place it in the local `data/` directory.
+
 ---
 
 # Project Workflow
@@ -96,6 +99,9 @@ clean_orders
         │
         ▼
 Business Analysis
+        │
+        ▼
+Advanced SQL & Analytics Views
         │
         ▼
 Power BI Dashboard
@@ -130,10 +136,11 @@ Completed:
 - ✅ Data quality assessment
 - ✅ Data cleaning
 - ✅ Analytics-ready staging layer (`clean_orders`)
+- ✅ Business analysis
+- ✅ Business analysis report
 
 Upcoming:
 
-- Business Analysis
 - Advanced SQL
 - Power BI Dashboard
 - Final Documentation
@@ -194,7 +201,7 @@ The cleaned staging layer prepares the dataset for analysis by:
 - [x] Environment Setup
 - [x] Data Profiling
 - [x] Data Cleaning
-- [ ] Business Analysis
+- [x] Business Analysis
 - [ ] Advanced SQL
 - [ ] Power BI Dashboard
 - [ ] Final Documentation
