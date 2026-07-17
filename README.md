@@ -60,6 +60,7 @@ docs/
 │── data_cleaning_report.md
 │── business_analysis_report.md
 │── advanced_sql_report.md
+│── power_bi_dashboard_plan.md
 
 sql/
 │── 01_database_setup.sql
@@ -69,6 +70,7 @@ sql/
 │── 05_advanced_sql.sql
 
 dashboard/
+│── Food_Delivery_Analytics_Dashboard.pbix
 
 images/
 
@@ -175,10 +177,15 @@ Completed:
 - ✅ Advanced SQL
 - ✅ Analytics views
 - ✅ Advanced SQL report
+- ✅ Power BI dashboard plan
+- ✅ Executive Dashboard Page 1
+
+In progress:
+
+- 🚧 Power BI Dashboard Pages 2–4
 
 Upcoming:
 
-- Power BI Dashboard
 - Final Documentation
 
 ---
@@ -196,7 +203,41 @@ Upcoming:
 | Rating Completion | 11.68% |
 | Duplicate Order IDs | 0 |
 | Date Range | 2024-09-01 → 2025-01-31 |
-| Delivered Orders | 99.11% |
+| Delivered Orders | 21,131 |
+| Delivery Success Rate | 99.11% |
+| Delivered Order Value | 14,423,379.76 |
+
+---
+
+# Power BI Dashboard
+
+Power BI consumes the validated PostgreSQL analytics views as its semantic layer. PostgreSQL defines the reusable KPIs, monthly performance, restaurant performance, customer segments, and operational benchmarks. Power BI is used for visualization, interaction, and a limited set of presentation measures rather than duplicating core analytical logic.
+
+The dashboard file is available at `dashboard/Food_Delivery_Analytics_Dashboard.pbix`.
+
+## Completed Page 1: Executive Overview
+
+![Executive Dashboard](images/dashboard/executive_dashboard_page_1.png)
+
+The completed Executive Overview contains:
+
+- Total Orders KPI: **21,321**
+- Delivered Order Value KPI: **14,423,379.76**
+- Delivered Orders KPI: **21,131**
+- Delivery Success Rate KPI: **99.11%**
+- Average Delivered Order Value KPI: **682.57**
+- Unique Customers KPI: **11,607**
+- Monthly Delivered Order Value Trend
+- Top 5 Restaurants by Delivered Order Value
+- Customer Frequency Segments: **One-time**, **Repeat**, and **Loyal**
+
+The Delivery Success Rate presentation measure divides the SQL percentage value by 100 so Power BI displays `99.11%` with percentage formatting. Page 1 uses all-time executive KPIs; visuals sourced from disconnected views do not imply unsupported cross-filtering.
+
+Pages 2–4 remain in progress:
+
+- Restaurant Performance
+- Customer Analysis
+- Operational Performance
 
 ---
 
@@ -239,7 +280,12 @@ The cleaned staging layer prepares the dataset for analysis by:
 - [x] Data Cleaning
 - [x] Business Analysis
 - [x] Advanced SQL
-- [ ] Power BI Dashboard
+- [x] Power BI Dashboard Planning
+- [x] Executive Dashboard Page 1
+- [ ] Restaurant Performance Page 2
+- [ ] Customer Analysis Page 3
+- [ ] Operational Performance Page 4
+- [ ] Power BI Dashboard Finalization
 - [ ] Final Documentation
 
 ---
@@ -249,7 +295,7 @@ The cleaned staging layer prepares the dataset for analysis by:
 Future versions of this project will include:
 
 - Query performance tuning and analytics-view indexing strategy
-- Interactive Power BI Dashboard
+- Complete the remaining Power BI dashboard pages
 - Python-based customer segmentation
 - Time-series forecasting
 - Customer review sentiment analysis
