@@ -14,6 +14,15 @@ The dashboard should present validated business metrics without recreating SQL t
 
 No SQL table or view changes are required for this plan.
 
+## Dashboard Implementation Progress
+
+| Page | Status |
+|---|---|
+| Page 1: Executive Overview | Completed |
+| Page 2: Restaurant Performance | Completed |
+| Page 3: Customer Analysis | In progress |
+| Page 4: Operational Performance | In progress |
+
 ## Source View Inventory
 
 | View | Grain | Primary identifier | Intended use |
@@ -356,21 +365,36 @@ Frequency counts use all order attempts, regardless of final status, consistent 
 - Customer-frequency tooltip: frequency segment and customer count.
 - Tooltip wording should preserve the term **delivered order value** and should not relabel it as an accounting metric.
 
-## Page 2: Restaurant Performance
+## Page 2: Restaurant Performance — Completed
+
+**Implementation status:** Completed in `dashboard/Food_Delivery_Analytics_Dashboard.pbix`.
 
 ### Business Purpose
 
 Compare restaurant brands and outlets on demand, successful fulfillment, delivered order value, and average order value. The page should help identify high-contribution outlets and separate scale from value mix.
 
-### Recommended Layout
+### Implementation Progress
 
-| Area | Visual | Content | Source columns |
+- ✓ Restaurant list slicer completed
+- ✓ KPI cards implemented
+- ✓ Restaurant performance matrix implemented
+- ✓ Top Restaurant Brands by Delivered Order Value chart completed
+- ✓ Order Volume vs Average Order Value scatter chart completed
+- ✓ Visual formatting completed
+- ✓ Interactive filtering validated
+
+### Implemented Layout
+
+| Visual | Visual type | Source | Business purpose |
 |---|---|---|---|
-| Header | Title and filter summary | Selected brand/outlet and “All-time outlet metrics” | `dim_restaurant` |
-| Top row | Four KPI cards | Total orders, delivered order value, delivery success rate, average delivered order value | Restaurant measures |
-| Middle left | Ranked horizontal bar chart | Delivered order value by outlet; Top N selector default 10 | `restaurant_id`, `restaurant_name`, `delivered_order_value` |
-| Middle right | Scatter chart | X: total orders; Y: average delivered order value; bubble size: delivered order value; legend: brand | `total_orders`, `average_delivered_order_value`, `delivered_order_value`, `restaurant_name`, `restaurant_id` |
-| Bottom | Matrix | Brand → outlet hierarchy with total orders, Delivered orders, success rate, delivered value, average value | All columns from `vw_restaurant_performance` |
+| Restaurant list | Slicer | `dim_restaurant[restaurant_name]` | Filter Page 2 to the selected restaurant brand or brands. |
+| Total Orders | KPI card | Restaurant Total Orders | Show all order attempts in the current restaurant filter context. |
+| Delivered Order Value | KPI card | Restaurant Delivered Order Value | Show final order value from Delivered orders in the current filter context. |
+| Delivery Success Rate | KPI card | Restaurant Delivery Success Rate | Show Delivered orders as a share of all orders in the current filter context. |
+| Average Order Value | KPI card | Restaurant Average Delivered Order Value | Show average final value per Delivered order in the current filter context. |
+| Top Restaurant Brands by Delivered Order Value | Horizontal bar chart | `restaurant_name`, Restaurant Delivered Order Value | Rank restaurant brands by delivered order value. |
+| Order Volume vs Average Order Value | Scatter chart | Restaurant Total Orders, Restaurant Average Delivered Order Value, Restaurant Delivered Order Value, `restaurant_name` | Compare restaurant demand, average delivered order value, and overall value contribution. |
+| Restaurant Performance Detail | Matrix | `restaurant_name` with restaurant and operational performance fields | Provide detailed restaurant-level metrics for comparison and review. |
 
 ### KPIs
 
@@ -381,20 +405,17 @@ Compare restaurant brands and outlets on demand, successful fulfillment, deliver
 
 ### Filters and Slicers
 
-- Brand: `dim_restaurant[restaurant_name]`
-- Outlet: `dim_restaurant[restaurant_id]`
-- Optional Top N parameter for the ranked bar chart
-- Optional delivery-success-rate range filter at the visual or filter-pane level
+- Restaurant list: `dim_restaurant[restaurant_name]`
+- The restaurant selection filters the KPI cards, bar chart, scatter chart, and detail matrix.
 
 Do not add a month slicer because this view contains all-time outlet aggregates.
 
-### Recommended Interactions
+### Validated Interactions
 
-- Brand selection filters every visual on this page.
-- Selecting an outlet in the bar or scatter chart cross-highlights the matrix.
-- Enable hierarchy drill from brand to outlet in the matrix.
-- Add a drill-through button to the Outlet Detail page described later.
-- Keep scatter-chart selection single-select when used as a drill-through starting point.
+- Restaurant-list selections filter every visual on Page 2.
+- Bar-chart and scatter-chart selections support comparative filtering and highlighting.
+- The detail matrix responds to the active restaurant filter context.
+- Page 2 remains an all-time restaurant analysis and does not claim unsupported month filtering.
 
 ### Tooltips
 
@@ -408,7 +429,7 @@ Use a shared outlet tooltip page containing:
 - Average kitchen preparation time
 - Average rider wait time
 
-The restaurant dimension allows the tooltip to retrieve both restaurant and operational view metrics for the selected outlet.
+The restaurant data can retrieve both restaurant and operational view metrics where the supported restaurant identifier relationship is present.
 
 ## Page 3: Customer Analysis
 

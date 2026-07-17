@@ -73,6 +73,9 @@ dashboard/
 │── Food_Delivery_Analytics_Dashboard.pbix
 
 images/
+└── dashboard/
+    ├── executive_dashboard_page_1.png
+    └── restaurant_performance_page_2.png
 
 notebooks/
 
@@ -179,10 +182,11 @@ Completed:
 - ✅ Advanced SQL report
 - ✅ Power BI dashboard plan
 - ✅ Executive Dashboard Page 1
+- ✅ Restaurant Performance Page 2
 
 In progress:
 
-- 🚧 Power BI Dashboard Pages 2–4
+- 🚧 Power BI Dashboard Pages 3–4
 
 Upcoming:
 
@@ -215,9 +219,12 @@ Power BI consumes the validated PostgreSQL analytics views as its semantic layer
 
 The dashboard file is available at `dashboard/Food_Delivery_Analytics_Dashboard.pbix`.
 
-## Completed Page 1: Executive Overview
+## Dashboard Screenshots
 
 ![Executive Dashboard](images/dashboard/executive_dashboard_page_1.png)
+![Restaurant Performance](images/dashboard/restaurant_performance_page_2.png)
+
+## Completed Page 1: Executive Overview
 
 The completed Executive Overview contains:
 
@@ -233,9 +240,26 @@ The completed Executive Overview contains:
 
 The Delivery Success Rate presentation measure divides the SQL percentage value by 100 so Power BI displays `99.11%` with percentage formatting. Page 1 uses all-time executive KPIs; visuals sourced from disconnected views do not imply unsupported cross-filtering.
 
-Pages 2–4 remain in progress:
+## Completed Page 2: Restaurant Performance
 
-- Restaurant Performance
+The Restaurant Performance page provides restaurant-level performance analysis using interactive filtering, KPIs, comparative visualizations, and detailed operational metrics.
+
+The completed page contains:
+
+- Restaurant list slicer
+- KPI cards:
+  - Total Orders
+  - Delivered Order Value
+  - Delivery Success Rate
+  - Average Order Value
+- Top Restaurant Brands by Delivered Order Value horizontal bar chart
+- Order Volume vs Average Order Value scatter chart
+- Restaurant Performance Detail matrix
+
+The restaurant list slicer filters the Page 2 KPIs and visual comparisons. Metrics continue to use the validated PostgreSQL analytics views as the semantic layer, with Power BI providing presentation and interaction.
+
+Pages 3–4 remain in progress:
+
 - Customer Analysis
 - Operational Performance
 
@@ -282,7 +306,7 @@ The cleaned staging layer prepares the dataset for analysis by:
 - [x] Advanced SQL
 - [x] Power BI Dashboard Planning
 - [x] Executive Dashboard Page 1
-- [ ] Restaurant Performance Page 2
+- [x] Restaurant Performance Page 2
 - [ ] Customer Analysis Page 3
 - [ ] Operational Performance Page 4
 - [ ] Power BI Dashboard Finalization
