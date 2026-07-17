@@ -190,6 +190,8 @@ In progress:
 
 Upcoming:
 
+- Customer Analysis Dashboard
+- Operational Performance Dashboard
 - Final Documentation
 
 ---
@@ -221,7 +223,10 @@ The dashboard file is available at `dashboard/Food_Delivery_Analytics_Dashboard.
 
 ## Dashboard Screenshots
 
+### Page 1 – Executive Overview
 ![Executive Dashboard](images/dashboard/executive_dashboard_page_1.png)
+
+### Page 2 – Restaurant Performance
 ![Restaurant Performance](images/dashboard/restaurant_performance_page_2.png)
 
 ## Completed Page 1: Executive Overview
