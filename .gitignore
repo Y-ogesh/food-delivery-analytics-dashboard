@@ -13,7 +13,16 @@ __pycache__/
 
 # Environment
 .env
+.env.*
+!.env.example
 .venv/
+
+# Generated analytical extracts
+data/derived/
+data/exports/
+*.parquet
+*.feather
+*.pkl
 
 # VS Code (optional)
 .vscode/

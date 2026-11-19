@@ -47,7 +47,11 @@ This project is designed to answer practical business questions such as:
 - VS Code
 - Git & GitHub
 - Power BI (Dashboard Development)
-- Python (Predictive Analytics & Machine Learning – Planned)
+- Python
+- Pandas & NumPy
+- SciPy
+- SQLAlchemy & Psycopg
+- Matplotlib & Seaborn
 
 ---
 
@@ -61,6 +65,7 @@ docs/
 │── business_analysis_report.md
 │── advanced_sql_report.md
 │── power_bi_dashboard_plan.md
+│── customer_spending_analysis.md
 
 sql/
 │── 01_database_setup.sql
@@ -68,14 +73,23 @@ sql/
 │── 03_data_cleaning.sql
 │── 04_business_analysis.sql
 │── 05_advanced_sql.sql
+│── 06_customer_spending_extraction.sql
+
+python/
+│── customer_hypothesis_testing.py
 
 dashboard/
 │── Food_Delivery_Analytics_Dashboard.pbix
 
 images/
-└── dashboard/
-    ├── executive_dashboard_page_1.png
-    └── restaurant_performance_page_2.png
+├── dashboard/
+│   ├── executive_dashboard_page_1.png
+│   └── restaurant_performance_page_2.png
+└── statistical_analysis/
+    ├── customer_average_delivered_order_value_distributions.png
+    ├── customer_spending_boxplots.png
+    ├── customer_spending_ecdf.png
+    └── customer_spending_bootstrap_confidence_intervals.png
 
 notebooks/
 
@@ -83,9 +97,10 @@ data/
 │── order_history_kaggle_data.csv
 
 README.md
+requirements.txt
 ```
 
-> The raw dataset is not committed to this repository. Download it from Kaggle and place it in the local `data/` directory.
+The source dataset used by the project is stored in the local `data/` directory.
 
 ---
 
@@ -114,6 +129,9 @@ Analytics Views
 (`vw_executive_kpis`, `vw_monthly_performance`,
  `vw_restaurant_performance`, `vw_customer_segments`,
  `vw_operational_performance`)
+        │
+        ▼
+Statistical Analysis
         │
         ▼
 Power BI Dashboard
@@ -162,6 +180,10 @@ This project demonstrates practical experience in:
 - Time-Series Analysis
 - Analytics View Development
 - Reusable Data Modeling for Power BI
+- Reproducible Statistical Analysis
+- Statistical Hypothesis Testing
+- Bootstrap Confidence Intervals
+- Effect-Size Interpretation
 
 ---
 
@@ -183,6 +205,8 @@ Completed:
 - ✅ Power BI dashboard plan
 - ✅ Executive Dashboard Page 1
 - ✅ Restaurant Performance Page 2
+- ✅ Customer spending statistical analysis
+- ✅ Statistical hypothesis testing and validation
 
 In progress:
 
@@ -212,6 +236,62 @@ Upcoming:
 | Delivered Orders | 21,131 |
 | Delivery Success Rate | 99.11% |
 | Delivered Order Value | 14,423,379.76 |
+
+---
+
+# Statistical Analysis
+
+The customer spending milestone evaluates whether customer-level average delivered order value differs between customers with exactly one Delivered order and customers with two or more. The analysis uses the reproducible `clean_orders` extraction in `sql/06_customer_spending_extraction.sql` and runs directly against PostgreSQL without persisting customer-level data.
+
+Methodology:
+
+- One row per eligible customer using average Delivered order value
+- One-time: exactly 1 Delivered order; Repeat: 2 or more
+- Two-sided tests with `α = 0.05`
+- Welch's t-test on original values as the primary arithmetic-mean test
+- Mann–Whitney U with Cliff's delta as a complementary rank/distribution analysis
+- Supplementary Welch test on natural-log values
+- Brown–Forsythe variance test
+- 10,000-resample bootstrap mean and median intervals using fixed seed `20261119`
+- All directional estimates reported as Repeat − One-time
+
+Key findings:
+
+- One-time mean: **699.62**; Repeat mean: **688.13**
+- Arithmetic mean difference: **−11.49** (**−1.64%**), bootstrap 95% CI **[−28.08, 4.89]**
+- Original-scale Welch test: **p = 0.163562472532**, not statistically significant
+- Median difference: **+19.02** (**+3.12%**), bootstrap 95% CI **[5.51, 27.98]**
+- Mann–Whitney test: **p = 0.000455528465104**, but Cliff's delta is only **+0.03995**
+- Log-scale Welch test: **p = 0.0000747190175732**, with a very small Hedges' g of **+0.07359**
+- Brown–Forsythe test confirms unequal dispersion; repeat variance is approximately **52.05%** of one-time variance
+
+The primary mean comparison does not show a statistically significant difference. Significant rank and log-scale results have very small effects, demonstrating why statistical significance, effect size, and practical significance must be assessed separately. This observational analysis does not establish causality and is not an A/B test.
+
+## Statistical Visualizations
+
+### Customer Spending Box Plots
+
+![Customer spending box plots](images/statistical_analysis/customer_spending_boxplots.png)
+
+### Empirical Cumulative Distributions
+
+![Customer spending ECDF](images/statistical_analysis/customer_spending_ecdf.png)
+
+### Bootstrap Confidence Intervals
+
+![Bootstrap confidence intervals](images/statistical_analysis/customer_spending_bootstrap_confidence_intervals.png)
+
+See the [detailed customer spending analysis](docs/customer_spending_analysis.md) for formal hypotheses, exact test statistics, limitations, and evidence-based recommendations.
+
+## Reproduce the Analysis
+
+```text
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python python/customer_hypothesis_testing.py
+```
+
+Database settings are read from `DATABASE_URL` or standard PostgreSQL `PG*` environment variables. Credentials are not stored in the repository.
 
 ---
 
@@ -309,6 +389,8 @@ The cleaned staging layer prepares the dataset for analysis by:
 - [x] Data Cleaning
 - [x] Business Analysis
 - [x] Advanced SQL
+- [x] Statistical Customer Spending Analysis
+- [x] Statistical Hypothesis Testing and Validation
 - [x] Power BI Dashboard Planning
 - [x] Executive Dashboard Page 1
 - [x] Restaurant Performance Page 2
@@ -325,7 +407,7 @@ Future versions of this project will include:
 
 - Query performance tuning and analytics-view indexing strategy
 - Complete the remaining Power BI dashboard pages
-- Python-based customer segmentation
+- Multivariate customer spending analysis with prespecified covariates
 - Time-series forecasting
 - Customer review sentiment analysis
 - Automated ETL pipeline
