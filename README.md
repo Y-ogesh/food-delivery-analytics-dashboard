@@ -2,9 +2,9 @@
 
 ## Project Overview
 
-The **Food Delivery Analytics Dashboard** is an end-to-end analytics portfolio project that transforms raw food delivery operational data into an analytics-ready data model using PostgreSQL and SQL before producing business insights and interactive Power BI dashboards.
+The **Food Delivery Analytics Dashboard** is a completed end-to-end analytics portfolio project that transforms raw food delivery operational data into an analytics-ready PostgreSQL model, produces business and statistical insights, and presents the results in a focused two-page Power BI dashboard.
 
-This project demonstrates a professional analytics workflow including data ingestion, profiling, cleaning, business analysis, documentation, version control, and dashboard development.
+The final dashboard scope includes an Executive Overview and Restaurant Performance page. Customer and operational analysis remain available through the documented SQL workflows, reusable PostgreSQL views, and customer-spending statistical analysis.
 
 ---
 
@@ -46,7 +46,7 @@ This project is designed to answer practical business questions such as:
 - DataGrip
 - VS Code
 - Git & GitHub
-- Power BI (Dashboard Development)
+- Power BI Desktop (Data Visualization and Interaction)
 - Python
 - Pandas & NumPy
 - SciPy
@@ -135,6 +135,7 @@ Statistical Analysis
         │
         ▼
 Power BI Dashboard
+(Executive Overview + Restaurant Performance)
 ```
 
 ---
@@ -189,7 +190,9 @@ This project demonstrates practical experience in:
 
 # Current Progress
 
-Completed:
+**Project status: Complete**
+
+Completed scope:
 
 - ✅ PostgreSQL database setup
 - ✅ Raw data ingestion
@@ -207,16 +210,10 @@ Completed:
 - ✅ Restaurant Performance Page 2
 - ✅ Customer spending statistical analysis
 - ✅ Statistical hypothesis testing and validation
+- ✅ Two-page Power BI dashboard
+- ✅ Final documentation and reproducibility guidance
 
-In progress:
-
-- 🚧 Power BI Dashboard Pages 3–4
-
-Upcoming:
-
-- Customer Analysis Dashboard
-- Operational Performance Dashboard
-- Final Documentation
+The dashboard scope is intentionally complete at two pages. Customer and operational subject areas are covered by the existing SQL reports, analytics views, and statistical workflow rather than separate Power BI pages.
 
 ---
 
@@ -299,7 +296,7 @@ Database settings are read from `DATABASE_URL` or standard PostgreSQL `PG*` envi
 
 Power BI consumes the validated PostgreSQL analytics views as its semantic layer. PostgreSQL defines the reusable KPIs, monthly performance, restaurant performance, customer segments, and operational benchmarks. Power BI is used for visualization, interaction, and a limited set of presentation measures rather than duplicating core analytical logic.
 
-The dashboard file is available at `dashboard/Food_Delivery_Analytics_Dashboard.pbix`.
+Open the [Power BI report](dashboard/Food_Delivery_Analytics_Dashboard.pbix) or review the [final implementation plan](docs/power_bi_dashboard_plan.md) for the semantic model, measures, visual inventory, and filter scope.
 
 ## Dashboard Screenshots
 
@@ -327,7 +324,7 @@ The Delivery Success Rate presentation measure divides the SQL percentage value 
 
 ## Completed Page 2: Restaurant Performance
 
-The Restaurant Performance page provides restaurant-level performance analysis using interactive filtering, KPIs, comparative visualizations, and detailed operational metrics.
+The Restaurant Performance page provides restaurant-level performance analysis using interactive filtering, KPIs, comparative visualizations, and detailed restaurant metrics.
 
 The completed page contains:
 
@@ -343,10 +340,7 @@ The completed page contains:
 
 The restaurant list slicer filters the Page 2 KPIs and visual comparisons. Metrics continue to use the validated PostgreSQL analytics views as the semantic layer, with Power BI providing presentation and interaction.
 
-Pages 3–4 remain in progress:
-
-- Customer Analysis
-- Operational Performance
+This two-page implementation is the finalized Power BI scope. Customer analysis remains documented in the business, advanced SQL, and statistical reports; operational performance remains documented in the business and advanced SQL reports and in `vw_operational_performance`.
 
 ---
 
@@ -394,19 +388,16 @@ The cleaned staging layer prepares the dataset for analysis by:
 - [x] Power BI Dashboard Planning
 - [x] Executive Dashboard Page 1
 - [x] Restaurant Performance Page 2
-- [ ] Customer Analysis Page 3
-- [ ] Operational Performance Page 4
-- [ ] Power BI Dashboard Finalization
-- [ ] Final Documentation
+- [x] Two-Page Power BI Dashboard Finalization
+- [x] Final Documentation
 
 ---
 
 # Future Improvements
 
-Future versions of this project will include:
+Potential optional extensions include:
 
 - Query performance tuning and analytics-view indexing strategy
-- Complete the remaining Power BI dashboard pages
 - Multivariate customer spending analysis with prespecified covariates
 - Time-series forecasting
 - Customer review sentiment analysis
